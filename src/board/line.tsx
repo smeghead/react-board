@@ -9,7 +9,7 @@ const dotStyle = {
   background: '#333',
 }
 
-const Line = (props: { buffer: string, offset: number }) => {
+const Line = (props: { buffer: string, offset: number, width: number }) => {
   const [buffer, setBuffer] = useState<string>('')
   useEffect(() => {
     setBuffer(props.buffer)
@@ -26,7 +26,7 @@ const Line = (props: { buffer: string, offset: number }) => {
       virtualScreenBuffer = buffer.substring((offset % buffer.length) * -1)
     }
     // 繰り返し
-    while (virtualScreenBuffer.length < 50) {
+    while (virtualScreenBuffer.length < props.width) {
       virtualScreenBuffer += buffer
     }
     // console.log(virtualScreenBuffer)
@@ -37,7 +37,7 @@ const Line = (props: { buffer: string, offset: number }) => {
   };
   return (
     <div className="Line">
-      {[...Array(50).keys()].map(i => <div key={i} className="dot-off" style={{ ...dotStyle, background: lightning(i, props.offset) }} />)}
+      {[...Array(props.width).keys()].map(i => <div key={i} className="dot-off" style={{ ...dotStyle, background: lightning(i, props.offset) }} />)}
     </div>
   );
 }

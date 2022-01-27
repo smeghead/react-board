@@ -30,9 +30,9 @@ const generateBuffer = (str: string, font: {[name: string]: Letter}) => {
     return buffer;
 };
 
-const Display = (props: {str: string, font: {[name: string]: Letter}}) => {
+const Board = (props: {str: string, font: {[name: string]: Letter}, width: number}) => {
   const [buffer, setBuffer] = useState(generateBuffer(props.str, props.font))
-  const [offset, setOffset] = useState(50)
+  const [offset, setOffset] = useState(props.width)
   useEffect(() => {
     setBuffer(generateBuffer(props.str, props.font))
   }, [props]);
@@ -48,11 +48,11 @@ const Display = (props: {str: string, font: {[name: string]: Letter}}) => {
   }, [offset, props.font])
 
   return (
-    <div className="Board" style={boardStyle}>
-      {[...Array(10).keys()].reverse().map(i => <Line key={i} buffer={buffer[i]} offset={offset} />)}
+    <div className="Board" style={{...boardStyle, width: props.width * 10}}>
+      {[...Array(10).keys()].reverse().map(i => <Line key={i} buffer={buffer[i]} offset={offset} width={props.width} />)}
     </div>
   );
 }
 
-export default Display;
+export default Board;
 // vim: set expandtab ts=2 sts=2 sw=2 :

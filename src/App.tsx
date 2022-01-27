@@ -58,7 +58,7 @@ const App = () => {
       <h2>新幹線の電光掲示板風</h2>
       <p>Reactの練習のために作りました。</p>
       <input type="text" onChange={e => setDisplayString(e.target.value)} placeholder='文字を入力してください。'/>
-      <Board str={displayString} font={font} />
+      <Board str={displayString} font={font} width={100} />
     </div>
   );
 }
