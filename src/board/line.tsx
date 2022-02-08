@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 
 const dotStyle = {
   float: 'left',
-  width: '8px',
-  height: '8px',
-  margin: '1px',
-  borderRadius: '5px',
+  width: '0.8vw',
+  height: '0.8vw',
+  margin: '0.1vw',
+  borderRadius: '0.5vw',
   background: '#333',
 }
 

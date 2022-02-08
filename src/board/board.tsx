@@ -1,11 +1,10 @@
 import React, {useState, useEffect } from 'react'
 import Line from './line'
-import Letter from './letter'
+import Letter from '../font/letter'
 
 const boardStyle = {
-  margin: '5px auto',
-  width: 500,
-  height: 100,
+  width: '100vw',
+  height: '10vw',
   backgroundColor: 'black',
 };
 
@@ -18,7 +17,7 @@ const generateBuffer = (str: string, font: {[name: string]: Letter}) => {
     str.split('').forEach(s => {
       const charCode: string = s.charCodeAt(0).toString()
       if (!(font[charCode])) {
-        console.log('no kye', charCode, font[charCode])
+        // console.log('no key', s, charCode, font[charCode])
         return
       }
       const letter = font[charCode]
@@ -48,7 +47,7 @@ const Board = (props: {str: string, font: {[name: string]: Letter}, width: numbe
   }, [offset, props.font])
 
   return (
-    <div className="Board" style={{...boardStyle, width: props.width * 10}}>
+    <div className="Board" style={{...boardStyle}}>
       {[...Array(10).keys()].reverse().map(i => <Line key={i} buffer={buffer[i]} offset={offset} width={props.width} />)}
     </div>
   );
