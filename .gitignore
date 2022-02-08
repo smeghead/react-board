@@ -28,6 +28,7 @@ src/parser/diagnosticMessages.generated.json
 rwc-report.html
 *.swp
 build.json
+build
 *.actual
 tests/webTestServer.js
 tests/webTestServer.js.map

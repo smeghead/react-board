@@ -29,7 +29,13 @@ const generateBuffer = (str: string, font: {[name: string]: Letter}) => {
     return buffer;
 };
 
-const Board = (props: {str: string, font: {[name: string]: Letter}, width: number}) => {
+type Props = {
+  str: string;
+  font: {[name: string]: Letter};
+  width: number;
+  expired: boolean;
+}
+const Board = (props: Props) => {
   const [buffer, setBuffer] = useState(generateBuffer(props.str, props.font))
   const [offset, setOffset] = useState(props.width)
   useEffect(() => {
@@ -38,6 +44,9 @@ const Board = (props: {str: string, font: {[name: string]: Letter}, width: numbe
 
   useEffect(() => {
     if (Object.keys(props.font).length === 0) {
+      return;
+    }
+    if (props.expired) {
       return;
     }
     const timerId = setTimeout(() => {
